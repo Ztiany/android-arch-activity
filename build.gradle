@@ -1,6 +1,6 @@
 plugins {
-    id "com.android.library"
-    id "kotlin-android"
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
@@ -32,17 +32,17 @@ android {
 
 dependencies {
     //基础库
-    api ThirdLibraries.archDelegate
+    api libs.ztiany.archdelegate
 
     //AndroidX
-    api AndroidLibraries.appcompat
-    api AndroidLibraries.activityKtx
-    api AndroidLibraries.lifecycleRuntimeKtx
+    api libs.androidx.appcompat
+    api libs.androidx.activity.ktx
+    api libs.androidx.lifecycle.runtime.ktx
 
     //Kotlin
-    api KotlinLibraries.kotlinStdlib
-    api KotlinLibraries.kotlinReflect
+    api libs.kotlin.stdlib
+    api libs.kotlin.reflect
 
     //Log
-    api ThirdLibraries.timber
+    api libs.jakewharton.timber
 }

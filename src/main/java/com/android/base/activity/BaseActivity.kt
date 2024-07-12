@@ -24,7 +24,9 @@ import timber.log.Timber
  */
 abstract class BaseActivity : AppCompatActivity(), ActivityDelegateOwner {
 
-    private val activityDelegates by lazy { ActivityDelegates(this) }
+    private val activityDelegates by lazy(LazyThreadSafetyMode.NONE) { ActivityDelegates(this) }
+
+    private var traditionalBackPressHandlingEnabled = false
 
     private fun tag() = this.javaClass.simpleName
 
@@ -169,17 +171,26 @@ abstract class BaseActivity : AppCompatActivity(), ActivityDelegateOwner {
      */
     protected abstract fun setUpLayout(savedInstanceState: Bundle?)
 
-    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        if (activityHandleBackPress(this)) {
+        if (traditionalBackPressHandlingEnabled && activityHandleBackPress(this)) {
             Timber.d("onBackPressed() called but child fragment handle it")
         } else {
-            superOnBackPressed()
+            handleOnBackPressed()
         }
     }
 
-    protected open fun superOnBackPressed() {
+    /**
+     * @see OnBackPressListener
+     */
+    protected open fun handleOnBackPressed() {
         super.onBackPressed()
+    }
+
+    /**
+     * Enable traditional back pressed handling.
+     */
+    fun enableTraditionalBackPressHandling() {
+        traditionalBackPressHandlingEnabled = true
     }
 
     @SuppressLint("ObsoleteSdkInt")

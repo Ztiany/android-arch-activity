@@ -10,16 +10,13 @@ android {
 dependencies {
     // 基础库
     api(libs.ztiany.archdelegate)
-
     // androidx
     api(libs.androidx.appcompat)
     api(libs.androidx.activity.ktx)
     api(libs.androidx.lifecycle.runtime.ktx)
-
     // kotlin
     api(libs.kotlin.stdlib)
     api(libs.kotlin.reflect)
-
     // log
-    api(libs.jakewharton.timber)
+    implementation(libs.jakewharton.timber)
 }

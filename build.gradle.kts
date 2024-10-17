@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.android.base.architecture.activity"
+    namespace = "com.android.base.activity"
 }
 
 dependencies {

@@ -15,10 +15,11 @@ import com.android.base.delegate.helper.ActivityDelegates
 import timber.log.Timber
 
 /**
- * 基础 BaseActivity 封装：
+ * A base class of [AppCompatActivity] which provides:
  *
- * 1. 封装通用流程。
- * 2. [onBackPressed] 事件分发，优先交给 [Fragment] 处理。
+ * 1. Encapsulation of common processes.
+ * 2. An implementation of [ActivityDelegateOwner] to manage [ActivityDelegate].
+ * 3. [onBackPressed] event dispatch, priority is given to [Fragment] to handle.
  *
  * @author Ztiany
  */
